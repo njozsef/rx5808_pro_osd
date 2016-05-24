@@ -1,6 +1,6 @@
 # rx5808_pro_osd
 
-MAJOR FIXES in 1.1.3 FIXED FONT UPDATE.
+original source from  Marko Hoepken.
 
 Deluxe OSD 5.8GHz (rx5808 module) control based on minimOSD Ardunino board
 
@@ -16,8 +16,7 @@ This video shows how it look like (is a link, since embedded video does not work
 ![Mini Tuner rx5808_pro_osd](https://raw.githubusercontent.com/wiki/markohoepken/rx5808_pro_osd/images/build_stand_alone/mini_tuner_34.jpg)
 
 
-This wiki page gives all the information to build you own OSD controller.
+![MicroOSD](/images/microosd.jpg?raw=true "Optional Title")
 
-Use the side bar for navigation.
 
-Have fun, Marko Hoepken
+original source and wiki:  markohoepken/rx5808_pro_osd

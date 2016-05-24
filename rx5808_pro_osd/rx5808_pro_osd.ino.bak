@@ -78,8 +78,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 //OSD Hardware 
 //#define ArduCAM328
-//#define MinimOSD
-#define MicroOSD
+#define MinimOSD
 
 //#define TELEMETRY_SPEED  57600  // Serial speed for key map update
 #define TELEMETRY_SPEED  38400  // Serial speed for key map update
@@ -92,13 +91,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 #define KEY_MID 3
 #define KEY_NONE 0
 
-#ifdef MicroOSD
-  #define rssiPin A3   // Depands on patch of microOSD
-  #define rx5808_SEL 3 // Depands on patch of microOSD
-#else
-  #define rssiPin A1   // Depands on patch of minimOSD
-  #define rx5808_SEL 5 // Depands on patch of minimOSD
-#endif
+#define rssiPin A1   // Depands on patch of minimOSD
+#define rx5808_SEL 5 // Depands on patch of minimOSD
 
 //#define POWER_SENSE A0 // difficult to solder
 #define POWER_SENSE A2 // easier to solder
@@ -106,14 +100,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 #define POWER_UPDATE_RATE 20 // how ofter power is updated (loops)
 
 #define spiDataPin 11
-
-#ifdef MicroOSD
-  #define slaveSelectPin 3    // mocroosd
-#else
-  #define slaveSelectPin 5    // minimosd
-#endif
-
-
+#define slaveSelectPin 5
 #define spiClockPin 13
 
 // key debounce delay in ms
