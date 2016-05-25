@@ -1,6 +1,8 @@
 # rx5808_pro_osd
 
 original source from  Marko Hoepken.
+wiki: https://github.com/markohoepken/rx5808_pro_osd/wiki
+
 
 Deluxe OSD 5.8GHz (rx5808 module) control based on minimOSD Ardunino board
 
