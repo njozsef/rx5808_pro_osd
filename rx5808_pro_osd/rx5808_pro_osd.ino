@@ -725,21 +725,23 @@ void loop()
             }
             else
             { // seek was successful            
-                osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02  AUTO MODE LOCK");
-
+              //osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02  AUTO MODE LOCK");
+		osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02 AUTO KERES STOP");
                 if (get_key() == KEY_UP) // restart seek if key pressed
                 {              
                     force_seek=1;
                     seek_up=1;
                     seek_found=0; 
-                    osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02  AUTO MODE SEEK");      
+                  //osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02  AUTO MODE SEEK");      
+                    osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02 AUTO KERES FUT "); 
                 }             
                 else if (get_key() == KEY_DOWN) // restart seek if key pressed
                 {              
                     force_seek=1;
                     seek_up=0;
                     seek_found=0; 
-                    osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02  AUTO MODE SEEK");      
+                  //osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02  AUTO MODE SEEK");
+                    osd_print(BAND_SCANNER_SPECTRUM_X_MIN,2,"\x02 AUTO KERES FUT ");      
                 }                 
             }
         }        
@@ -781,11 +783,13 @@ void loop()
                     if (get_key() == KEY_UP)
                     {   
                         // pause
-                        osd_print (3,2, "HOLD BAND SCANNER");
+                      //osd_print (3,2, "HOLD BAND SCANNER");
+                        osd_print (3,2, "STOP SAV SZKENNER");
                         while(get_key() == KEY_UP);
                         // stay here until key pressed again
                         while(get_key() == KEY_NONE);
-                        osd_print (3,2, "     BAND SCANNER");
+                      //osd_print (3,2, "     BAND SCANNER");
+                        osd_print (3,2, "     SAV SZKENNER");
                         while(get_key() == KEY_UP);            
                     }                     
                 }
@@ -821,7 +825,8 @@ void loop()
                 EEPROM.write(EEPROM_ADR_RSSI_MAX_L,(rssi_max & 0xff));
                 EEPROM.write(EEPROM_ADR_RSSI_MAX_H,(rssi_max >> 8));                    
                 state=state_last_used;                 
-                osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 5 + MENU_SETUP_ENTRY ), " Settings saved..");
+              //osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 5 + MENU_SETUP_ENTRY ), " Settings saved..");
+                osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 5 + MENU_SETUP_ENTRY ), " Beall. mentve...");
                 delay(1000);
                 spectrum_init(); // clear spectrum
             }
@@ -985,7 +990,8 @@ void loop()
                         EEPROM.write(EEPROM_ADR_STATE,state_last_used);
                         EEPROM.write(EEPROM_ADR_TUNE,channelIndex);  
                         EEPROM.write(EEPROM_ADR_VIDEO_MODE,video_mode);                        
-                        osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), " Settings saved..");
+                      //osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), " Settings saved..");
+                        osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), " Beall. mentve...");
                         delay(1000);
                         osd_print (MENU_SETUP_X, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "                 ");
                         state=state_last_used;  // fast exit
@@ -994,7 +1000,8 @@ void loop()
                         // toggle and update
                         if(manual_mode== MODE_LINEAR){
                             manual_mode=MODE_BAND;  
-                            osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+5,"BAND  ");                              
+                          //osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+5,"BAND  ");  
+                            osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+5,"SAV   "); 
                         }
                         else
                         {
@@ -1002,7 +1009,8 @@ void loop()
                             osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+5,"LINEAR");       
                         } 
                         EEPROM.write(EEPROM_ADR_MANUAL_MODE,manual_mode);
-                        osd_print (MENU_SETUP_X+5, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "Saved.          ");
+                      //osd_print (MENU_SETUP_X+5, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "Saved.          ");
+                        osd_print (MENU_SETUP_X+5, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "Mentve.         ");
                         delay(1000);
                         osd_print (MENU_SETUP_X+5, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "                ");
                         
@@ -1021,7 +1029,8 @@ void loop()
                             osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+6,"NTSC");       
                         } 
                         EEPROM.write(EEPROM_ADR_VIDEO_MODE,video_mode);
-                        osd_print (MENU_SETUP_X-2, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "Saved. RESTARTING...");
+                      //osd_print (MENU_SETUP_X-2, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "Saved. RESTARTING...");
+                        osd_print (MENU_SETUP_X-2, (MENU_SETUP_Y + 4 + MENU_SETUP_ENTRY ), "Mentve. RESTART...");
                         delay(2000);
                         asm volatile ("  jmp 0");  // softstart by jumping to start vector  
                         // REBOOT, WILL NEVER GET HERE
@@ -1900,9 +1909,9 @@ void screen_startup(void)
     const static char P_text_1[] PROGMEM  ="\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x04";
     const static char P_text_2[] PROGMEM  ="\x02 RX5808 PRO OSD \x02";
     const static char P_text_3[] PROGMEM  ="\x07\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x08";
-    const static char P_text_4[] PROGMEM  ="\x02   22.11.2015   \x02";
-    const static char P_text_5[] PROGMEM  ="\x02    V1.1.3      \x02";
-    const static char P_text_6[] PROGMEM  ="\x02  MARKO HOEPKEN \x02";
+    const static char P_text_4[] PROGMEM  ="\x02    5.8 GHZ    \x02";
+    const static char P_text_5[] PROGMEM  ="\x02    SPECTRUM   \x02";
+    const static char P_text_6[] PROGMEM  ="\x02    ANALIZER   \x02";
     const static char P_text_7[] PROGMEM  ="\x05\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x06";
 
     uint8_t y=MENU_MODE_SELECTION_Y;
@@ -1926,13 +1935,13 @@ void screen_startup(void)
 void screen_mode_selection(void)
 {
     const static char P_text_1[] PROGMEM  = "\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x04";
-    const static char P_text_2[] PROGMEM  = "\x02 MODE SELECTION \x02";
+    const static char P_text_2[] PROGMEM  = "\x02 UZEMMOD VAL.   \x02";
     const static char P_text_3[] PROGMEM  = "\x07\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x08";
-    const static char P_text_4[] PROGMEM  = "\x02  EXIT          \x02";
-    const static char P_text_5[] PROGMEM  = "\x02  AUTO SEARCH   \x02";
-    const static char P_text_6[] PROGMEM  = "\x02  BAND SCANNER  \x02";
-    const static char P_text_7[] PROGMEM  = "\x02  MANUAL MODE   \x02";
-    const static char P_text_8[] PROGMEM  = "\x02  SETUP         \x02";
+    const static char P_text_4[] PROGMEM  = "\x02  KILEP         \x02";
+    const static char P_text_5[] PROGMEM  = "\x02  AUTO KERESES  \x02";
+    const static char P_text_6[] PROGMEM  = "\x02  SAV SZKENNER  \x02";
+    const static char P_text_7[] PROGMEM  = "\x02  KEZI UZEMMOD  \x02";
+    const static char P_text_8[] PROGMEM  = "\x02  BEALLITAS     \x02";
     const static char P_text_9[] PROGMEM  = "\x05\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x06";
 
     uint8_t y=MENU_MODE_SELECTION_Y;
@@ -1952,14 +1961,14 @@ void screen_mode_selection(void)
 void screen_setup(void)
 {
     const static char P_text_1[] PROGMEM  = "\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x04";
-    const static char P_text_2[] PROGMEM  = "\x02       SETUP     \x02";
+    const static char P_text_2[] PROGMEM  = "\x02    BEALLITAS    \x02";
     const static char P_text_3[] PROGMEM  = "\x07\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x08";
-    const static char P_text_4[] PROGMEM  = "\x02  EXIT           \x02";
-    const static char P_text_5[] PROGMEM  = "\x02  SAVE SETTINGS  \x02";
-    const static char P_text_6[] PROGMEM  = "\x02  MANUAL:        \x02";
+    const static char P_text_4[] PROGMEM  = "\x02  KILEPES        \x02";
+    const static char P_text_5[] PROGMEM  = "\x02  MENTES         \x02";
+    const static char P_text_6[] PROGMEM  = "\x02  KEZI  :        \x02";
     const static char P_text_7[] PROGMEM  = "\x02  VIDEO :        \x02";
-    const static char P_text_8[] PROGMEM  = "\x02  RSSI CALIBRATE \x02";
-    const static char P_text_9[] PROGMEM  = "\x02  FONT UPLOAD    \x02";
+    const static char P_text_8[] PROGMEM  = "\x02  RSSI KALIB.    \x02";
+    const static char P_text_9[] PROGMEM  = "\x02  FONT FELTOLT   \x02";
     const static char P_text_10[] PROGMEM  ="\x05\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x06";   
     uint8_t y=MENU_SETUP_Y;
     osd.clear();
@@ -1980,7 +1989,7 @@ void screen_setup(void)
     }
     else
     {
-        osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+5,"BAND  ");      
+        osd_print(MENU_SETUP_X+11,MENU_SETUP_Y+5,"SAV   ");      
     }    
     // video mode handler
     if(video_mode== NTSC){
@@ -1997,10 +2006,10 @@ void screen_setup(void)
 void screen_band_scanner(uint8_t mode)
 {
     const static char P_text_1[] PROGMEM  = "\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x04";
-    const static char P_text_2[] PROGMEM  = "\x02     BAND SCANNER   \xd0 0.0\x02";
+    const static char P_text_2[] PROGMEM  = "\x02     SAV SZKENNER   \xd0 0.0\x02";
     const static char P_text_3[] PROGMEM  = "\x05\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x06";
-    const static char P_text_4[] PROGMEM  = "\x02  RSSI CALIBRATION       \x02";
-    const static char P_text_5[] PROGMEM  = "\x02Run:?? MIN:???   MAX:??? \x02";
+    const static char P_text_4[] PROGMEM  = "\x02  RSSI KALIBRALAS        \x02";
+    const static char P_text_5[] PROGMEM  = "\x02Fut:?? MIN:???   MAX:??? \x02";
     const static char P_text_6[] PROGMEM  = "\x05\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x06";
     const static char P_text_7[] PROGMEM  = "\x09\x0d\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0a\x0c\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0e\x0b\x0d";
 
@@ -2031,9 +2040,9 @@ void screen_band_scanner(uint8_t mode)
 void screen_manual(uint8_t mode, uint8_t channelIndex)
 {
     const static char P_text_1[] PROGMEM  = "\x03\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x04";
-    const static char P_text_2[] PROGMEM  = "\x02  MANUAL BAND MODE       \x02";
-    const static char P_text_3[] PROGMEM  = "\x02  MANUAL LINEAR MODE     \x02";
-    const static char P_text_4[] PROGMEM  = "\x02  AUTO MODE SEEK         \x02";
+    const static char P_text_2[] PROGMEM  = "\x02  KEZI SAV MOD           \x02";
+    const static char P_text_3[] PROGMEM  = "\x02  KEZI LINEAR MOD        \x02";
+    const static char P_text_4[] PROGMEM  = "\x02  AUTOMATA KERESES       \x02";
     const static char P_text_5[] PROGMEM  = "\x07\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x01\x08";
     const static char P_text_6[] PROGMEM  = "\x02 FREQ: ???? GHz          \x02";
     const static char P_text_7[] PROGMEM  = "\x02 RSSI:\x83\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x88\x89\x02";
