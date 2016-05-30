@@ -78,8 +78,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 //OSD Hardware 
 //#define ArduCAM328
-//#define MinimOSD
-#define MicroOSD
+#define MinimOSD
+//#define MicroOSD
 
 //#define TELEMETRY_SPEED  57600  // Serial speed for key map update
 #define TELEMETRY_SPEED  38400  // Serial speed for key map update
@@ -95,7 +95,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 #ifdef MicroOSD
   #define rssiPin A3   // Depands on patch of microOSD
   #define rx5808_SEL 3 // Depands on patch of microOSD
-#else
+#endif
+#ifdef MinimOSD
   #define rssiPin A1   // Depands on patch of minimOSD
   #define rx5808_SEL 5 // Depands on patch of minimOSD
 #endif
@@ -109,7 +110,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 #ifdef MicroOSD
   #define slaveSelectPin 3    // mocroosd
-#else
+#endif
+#ifdef MinimOSD
   #define slaveSelectPin 5    // minimosd
 #endif
 
