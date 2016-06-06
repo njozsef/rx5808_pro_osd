@@ -21,4 +21,4 @@ This video shows how it look like (is a link, since embedded video does not work
 ![MicroOSD](/images/microosd.jpg?raw=true "Optional Title")
 
 
-original source and wiki:  https://markohoepken/rx5808_pro_osd
+original source and wiki:  https://github.com/markohoepken/rx5808_pro_osd
