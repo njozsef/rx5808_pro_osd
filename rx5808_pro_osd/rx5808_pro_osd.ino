@@ -180,7 +180,7 @@ const uint8_t MagicKey[] PROGMEM = { // key to check if EEprom matches software
 
 
 // Menu settings
-#define MENU_HIDE_TIMER 150 // 50 ~ 1 second
+#define MENU_HIDE_TIMER 50 // 50 ~ 1 second
 
 #define MENU_MODE_SELECTION_X 6
 #define MENU_MODE_SELECTION_Y 2
