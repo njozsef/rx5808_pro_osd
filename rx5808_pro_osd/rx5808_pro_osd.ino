@@ -92,6 +92,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 #define KEY_MID 3
 #define KEY_NONE 0
 
+// Uncomment the define for RESISTIVE_KEY_PORT and set it to the analog port number
+// to read keystrokes from a keyboard where each key puts a different resistance across the 
+// two wires when pressed rather than the standard method that uses two diodes
+// #define RESISTIVE_KEY_PORT 2
+
 #ifdef MicroOSD
   #define rssiPin A3   // Depands on patch of microOSD
   #define rx5808_SEL 3 // Depands on patch of microOSD
@@ -2136,6 +2141,37 @@ uint8_t get_key (void)
     return(current_key);
 }
 
+#ifdef RESISTIVE_KEY_PORT
+// Interpret keypresses from analogue voltage sensor
+// no debounce
+uint8_t get_key_raw(void) {
+  
+  // read the raw value from the analog port
+  int keyVal = analogRead(RESISTIVE_KEY_PORT);
+
+  // optionally log the raw value to determine the correct values
+  //Serial.println(keyVal);
+
+  // 0-3 means no keypress
+  if (keyVal<4) {
+    return KEY_NONE;    
+  }
+
+  // 4-11 means middle key
+  if (keyVal<13) {
+    return KEY_MID;
+  }
+
+  // 13-23 means down key
+  if (keyVal<24) {
+    return KEY_DOWN;
+  }
+
+  // 24 and above means up key
+  return KEY_UP;
+}
+
+#else
 // no debounce get key function
 uint8_t get_key_raw (void)
 {   
@@ -2189,6 +2225,7 @@ uint8_t get_key_raw (void)
         return (0);
     }    
 }
+#endif
 
 void unplugSlaves(){
     //Unplug list of SPI
